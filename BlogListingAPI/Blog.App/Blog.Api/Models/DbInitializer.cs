@@ -5,16 +5,14 @@ namespace Blog.Api.Models
 {
     public class DbInitializer
     {
-        public static void Seed(IServiceProvider serviceProvider)
+        public static void Seed(IServiceProvider serviceProvider, BlogDbContext context)
         {
             List<BlogItem> blogs = CustomCsvHelper.ReadCsvFile();
-            using (var context = new BlogDbContext(serviceProvider.GetRequiredService<DbContextOptions<BlogDbContext>>()))
+               
+            if (!context.Blogs.Any())
             {
-                if (!context.Blogs.Any())
-                {
-                    context.Blogs.AddRange(blogs);
-                    context.SaveChanges();
-                }
+                context.Blogs.AddRange(blogs);
+                context.SaveChanges();
             }
             
         }
