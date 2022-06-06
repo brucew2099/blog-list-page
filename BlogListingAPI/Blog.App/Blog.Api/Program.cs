@@ -29,6 +29,7 @@ if (app.Environment.IsDevelopment())
     app.UseSwaggerUI();
 }
 
+// Seed the inMemoryDatabase with the CSV files
 using(var scope = app.Services.CreateScope())
 {
     var services = scope.ServiceProvider;
@@ -39,7 +40,8 @@ using(var scope = app.Services.CreateScope())
 
 app.UseHttpsRedirection();
 
-app.UseAuthentication();
+app.UseCors("default");
+
 app.UseAuthorization();
 
 app.MapControllers();
