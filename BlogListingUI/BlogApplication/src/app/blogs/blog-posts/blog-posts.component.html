@@ -1,20 +1,29 @@
 <div *ngFor="let blog of blogs">
-  <div class="card" style="height:250px;">
-    <div class="row g-3">
+  <div class="card mb-3" style="max-height:350px; border-style:none;">
+    <div class="row">
       <div class="col-md-8">
         <div class="card-body">
-          <h5 class="card-title">{{ blog.title }}<span class="badge bg-primary">{{ blog.topic }}</span></h5>
+          <div class="row">
+            <div class="col-md-10">
+              <h5 class="card-title">{{ blog.title }}</h5>
+            </div>
+            <div class="col-md-2">
+              <span class="badge bg-danger">{{ blog.topic }}</span>
+            </div>
+          </div>
           <h6 class="card-subtitle mb-2 text-muted">
-            <div>{{ blog.authorName }}</div>
-            <div>{{ blog.publishedDate }}</div>
+            <div clsss="row">
+              <div class="col-md-4">{{ blog.authorName }}</div>
+              <div class="col-md-6">{{ blog.publishedDate }}</div>
+            </div>
           </h6>
           <p class="card-text">{{ blog.shortDescription }}</p>
+          <div class="invisible">{{ blog.blogId }}</div>
           <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal" (click)="showAndHideContents(blog)">{{ buttonName }}</button>
         </div>
       </div>
       <div class="col-md-4">
-        <div class="invisible">{{ blog.blogId }}</div>
-        <img src="{{ blog.image }}" class="card-img-top" alt="{{ blog.title }}" width="100" height="225">
+        <img src="{{ blog.image }}" class="card-img-top" alt="{{ blog.title }}" width="150" height="225" style="padding:10px;">
       </div>
     </div>
   </div>
