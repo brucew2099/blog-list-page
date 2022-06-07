@@ -4,32 +4,26 @@
     ViewData["Title"] = "Blog List";
 }
 
-<h1>Blog</h1>
-
 <div class="row">
     @foreach (Blog blog in Model)
     {
         <div class="col-6 mx-auto my-3">
             <div class="card" style="max-height:500px;">
                 <div class="card-body">
+                    <img src="@blog.Image" class="card-img-top" alt="@blog.Title" style="padding:10px;width:auto;height:200px;margin-bottom:10px;">
+                    <div class="row ml-1">
+                        <span class="badge bg-danger">@blog.Topic</span>
+                    </div>
                     <div class="row">
-                        <img src="@blog.Image" class="card-img-top" alt="@blog.Title" style="padding:10px;width:auto;height:200px;margin-bottom:10px;">
-                        <div class="row">
-                            <div class="col-1">
-                                <span class="badge bg-danger">@blog.Topic</span>
-                            </div>
-                            <h4 class="card-title">@blog.Title</h4>
-                        </div>
-                        <div clsss="row card-subtitle mb-3 text-muted">
-                            <h6 class="col-s col-md-4">@blog.AuthorName</h6>
-                            <h6 class="col-md-4">@blog.PublishedDate</h6>
-                        </div>
+                        <h4 class="card-title col-12">@blog.Title</h4>
+                    </div>
+                    <div clsss="card-subtitle mb-3 text-muted">
+                        <h6>@blog.AuthorName</h6>
+                        <h6>@blog.PublishedDate</h6>
                     </div>
                     <p class="card-text">@blog.ShortDescription</p>
                     <div class="invisible">@blog.BlogId</div>
-                    <form>
-                        <button type="button" class="btn btn-primary" asp-action="Posts" value=@blog.BlogId>Read More</button>
-                    </form>
+                    @Html.ActionLink("Read More", "Posts", "Home", new { id = blog.BlogId }, new { @class = "btn btn-primary" })
                 </div>
             </div>
         </div>

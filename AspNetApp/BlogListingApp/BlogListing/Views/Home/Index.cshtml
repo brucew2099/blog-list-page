@@ -4,8 +4,8 @@
     ViewData["Title"] = "Topic List";
 }
 
-<<div class="row" style="background-color:#ffffff; margin-top:25px;">
-  <h2>Blog Topics</h2>
+<div class="row" style="background-color:#ffffff; margin-top:25px;">
+  <h2 style="margin-left:20px;">Blog Topics</h2>
   <table class="table">
     <thead>
       <tr>
@@ -18,9 +18,7 @@
         {
         <tr>
             <td>
-                <form asp-controller="Home" asp-action="Blog">
-                    <button class="btn btn-primary" value=@topic.Name>@topic.Name</button>
-                </form>
+                @Html.ActionLink(@topic.Name, "Blog", "Home", new { topic = topic.Name }, new { @class = "btn btn-primary"})
             </td>
             <td>@topic.AggregateCount</td>
         </tr>
