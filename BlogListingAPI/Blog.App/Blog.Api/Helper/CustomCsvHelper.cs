@@ -6,7 +6,9 @@ namespace Blog.Api.Helper
     {
         public static List<BlogItem> ReadCsvFile()
         {
-            List<BlogItem> blogs = File.ReadAllLines("C:\\Users\\alank\\source\\repos\\blog-listing-application\\BlogListingAPI\\Blog.App\\Blog.Api\\Data\\blog.csv")
+            Console.WriteLine(Directory.GetCurrentDirectory());
+
+            List<BlogItem> blogs = File.ReadAllLines("C:\\Users\\alank\\Source\\Repos\\blog-listing-application\\BlogListingAPI\\Blog.App\\Blog.Api\\Data\\blog.csv")
                                            .Skip(1)
                                            .Select(x => ReadFromCsv(x))
                                            .ToList();

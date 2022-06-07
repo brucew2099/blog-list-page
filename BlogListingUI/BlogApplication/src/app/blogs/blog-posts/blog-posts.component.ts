@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { Blog } from 'src/app/models/blogs.model';
 import { BlogService } from 'src/app/services/blog.service';
 
@@ -9,38 +10,25 @@ import { BlogService } from 'src/app/services/blog.service';
 })
 export class BlogPostsComponent implements OnInit {
 
-  constructor(private blogService: BlogService) { }
+  constructor(private blogService: BlogService, private route:Router) { }
 
   blogs: Blog[] = [];
   show:boolean = false;
-  buttonName:any = "Read More";
-  blogToShow: Blog = {
-    blogId: "",
-    title: "",
-    shortDescription: "",
-    authorName: "",
-    topic: "",
-    image: "",
-    contents: "",
-    publishedDate: new Date(),
-  };
+  topic: string = "";
 
   ngOnInit(): void {
-    this.blogService.getAllBlogs().subscribe(
+    this.topic = this.blogService.topic;
+
+    this.blogService.getBlogsByTopic(this.topic).subscribe(
       response => {
         this.blogs = response;
       }
     )
   }
 
-  showAndHideContents(temp: Blog) {
-    // this.show = !this.show;
-
-    // if(this.show)
-    //   this.buttonName = "Hide Contents";
-    // else
-    //   this.buttonName = "Read More";
-    this.blogToShow = temp;
+  readMore(blogId: string) {
+    this.blogService.id = blogId;
+    this.route.navigate(['/blog/content']);
   }
 
 }

@@ -1,0 +1,30 @@
+﻿@model IEnumerable<BlogListing.Models.Topic>
+ 
+@{
+    ViewData["Title"] = "Topic List";
+}
+
+<<div class="row" style="background-color:#ffffff; margin-top:25px;">
+  <h2>Blog Topics</h2>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Topic Name</th>
+        <th>Number Posts</th>
+      </tr>
+    </thead>
+    <tbody>
+        @foreach(Topic topic in Model)
+        {
+        <tr>
+            <td>
+                <form asp-controller="Home" asp-action="Blog">
+                    <button class="btn btn-primary" value=@topic.Name>@topic.Name</button>
+                </form>
+            </td>
+            <td>@topic.AggregateCount</td>
+        </tr>
+        }
+    </tbody>
+  </table>
+</div>

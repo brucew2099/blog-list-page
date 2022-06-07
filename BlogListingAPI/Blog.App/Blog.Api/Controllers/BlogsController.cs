@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Blog.Api.Models;
+using System.Globalization;
 
 namespace Blog.Api.Controllers
 {
@@ -8,6 +9,7 @@ namespace Blog.Api.Controllers
     [ApiController]
     public class BlogsController : ControllerBase
     {
+        private const string DateFormat = "MMMM d, yyyy";
         private readonly BlogDbContext _context;
 
         public BlogsController(BlogDbContext context)
@@ -19,10 +21,11 @@ namespace Blog.Api.Controllers
         [HttpGet]
         public async Task<ActionResult<IEnumerable<BlogItem>>> GetBlogs()
         {
-          if (_context.Blogs == null)
-          {
-              return NotFound();
-          }
+            if (_context.Blogs == null)
+            {
+                return NotFound();
+            }
+
             return await _context.Blogs.ToListAsync();
         }
 

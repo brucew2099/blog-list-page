@@ -26,6 +26,5 @@ namespace Blog.Api.Models
             AuthorName = "Anonymous";
             Topic = "Buckeye Stories";
         }
-
     }
 }

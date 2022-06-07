@@ -25,7 +25,7 @@ namespace Blog.Api.Controllers
 
             if (blogs == null) return NotFound("No blogs found");
 
-            foreach(BlogItem blog in blogs)
+            foreach (BlogItem blog in blogs)
             {
                 int blogCount = await (Task<int>)(_context.Blogs?.Where(b => b.Topic.ToString() == blog.Topic).CountAsync());
                 temp = new ResponseFromGet(blog.Topic, blogCount, "null");
@@ -49,6 +49,16 @@ namespace Blog.Api.Controllers
 
             return Ok(new ResponseFromGet(blog.Topic, blogCount, "null"));
 
+        }
+
+        [HttpGet("{topic}/blogs")]
+        public async Task<IActionResult> GetBlogsFromTopic(string topic)
+        {
+            List<BlogItem>? blogs = await _context.Blogs?.Where(b => b.Topic.Equals(topic)).ToListAsync();
+
+            if (blogs.Count() == 0) return NotFound($"No blog can be found with topic: {topic}");
+
+            return Ok(blogs);
         }
     }
 }

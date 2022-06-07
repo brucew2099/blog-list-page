@@ -11,7 +11,7 @@ namespace Blog.Api.Models
                
             if (!context.Blogs.Any())
             {
-                context.Blogs.AddRange(blogs);
+                context.Blogs.AddRangeAsync(blogs);
                 context.SaveChanges();
             }
             

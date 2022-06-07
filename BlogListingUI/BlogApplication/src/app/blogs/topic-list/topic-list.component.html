@@ -1,0 +1,17 @@
+<div class="row" style="background-color:#ffffff; margin-top:25px;">
+  <h2>Blog Topics</h2>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Topic Name</th>
+        <th>Number Posts</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let topic of topics">
+        <td><button class="btn btn-primary" (click)="clickOnTopic(topic.name)">{{ topic.name }}</button></td>
+        <td>{{ topic.aggregateCount }}</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
