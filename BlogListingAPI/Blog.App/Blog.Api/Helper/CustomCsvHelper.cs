@@ -8,7 +8,7 @@ namespace Blog.Api.Helper
         {
             Console.WriteLine(Directory.GetCurrentDirectory());
 
-            List<BlogItem> blogs = File.ReadAllLines("C:\\Users\\alank\\Source\\Repos\\blog-listing-application\\BlogListingAPI\\Blog.App\\Blog.Api\\Data\\blog.csv")
+            List<BlogItem> blogs = File.ReadAllLines(".\\Data\\blog.csv")
                                            .Skip(1)
                                            .Select(x => ReadFromCsv(x))
                                            .ToList();
